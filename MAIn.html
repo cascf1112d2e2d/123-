@@ -1,26 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Downloading AR File...</title>
-    <meta http-equiv="refresh" content="0;url=https://github.com/cascf1112d2e2d/asdsd/releases/download/v1.0.0/Radonix_Lego.3.usdz">
+    <title>Auto Download</title>
     <script>
-        // Auto-trigger the download when the page loads
         window.onload = function() {
-            var link = document.createElement('a');
-            link.href = "https://github.com/cascf1112d2e2d/asdsd/releases/download/v1.0.0/Radonix_Lego.3.usdz";
-            link.download = "Radonix_Lego.3.usdz";  // Sets the filename for download
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            setTimeout(() => {
+                var link = document.createElement('a');
+                link.href = 'https://github.com/cascf1112d2e2d/asdsd/releases/download/v1.0.0/Radonix_Lego.3.usdz';
+                link.target = '_blank';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Fallback for browsers that block automatic downloads
+                var iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = link.href;
+                document.body.appendChild(iframe);
+            }, 2000); // Delay for better compatibility
         };
     </script>
 </head>
-<body style="margin: 0px; overflow: scroll;">
-    <a-scene embedded arjs>
-        <a-box position="0 0.5 0" material="opacity: 0.5;"></a-box>
-        <a-marker-camera preset="hiro"></a-marker-camera>
-    </a-scene>
+<body>
+    <h1>Your download should start automatically...</h1>
 </body>
 </html>
